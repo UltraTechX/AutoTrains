@@ -1,0 +1,16 @@
+[
+{
+  "modid": "autotrains",
+  "name": "Automatic Trains Mod",
+  "description": "The official Automatic Trains Mod! Use it for complex railways!",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["UltraTechX"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
