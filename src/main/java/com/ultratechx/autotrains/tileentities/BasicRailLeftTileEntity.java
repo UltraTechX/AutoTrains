@@ -43,7 +43,7 @@ public class BasicRailLeftTileEntity extends TileEntity{
 	
 	private void initialCheck(){
 		int i=0;
-		for (int x = xCoord - 1; x < xCoord + 2; x++){
+		for (int x = xCoord - 1; x < xCoord + 3; x++){
 			for (int y = yCoord; y < yCoord + 1; y++){
 				for (int z = zCoord - 1; z < zCoord + 2; z++){
 					TileEntity tile = worldObj.getTileEntity(x, y, z);
@@ -67,9 +67,9 @@ public class BasicRailLeftTileEntity extends TileEntity{
 	}
 	
 	public void setNeighborAir(){
-		for (int x = xCoord - 1; x < xCoord + 2; x++){
+		for (int x = xCoord - 2; x < xCoord + 3; x++){
 			for (int y = yCoord; y < yCoord + 1; y++){
-				for (int z = zCoord - 1; z < zCoord + 2; z++){
+				for (int z = zCoord - 2; z < zCoord + 3; z++){
 					TileEntity tile = worldObj.getTileEntity(x, y, z);
 					if(tile != null && (tile instanceof BasicRailTileEntity)){
 						worldObj.setBlock(x, y, z, Blocks.air);
@@ -80,9 +80,9 @@ public class BasicRailLeftTileEntity extends TileEntity{
 	}
 	
 	public void setNeighborUpdate(){
-		for (int x = xCoord - 1; x < xCoord + 2; x++){
+		for (int x = xCoord - 2; x < xCoord + 3; x++){
 			for (int y = yCoord; y < yCoord + 1; y++){
-				for (int z = zCoord - 1; z < zCoord + 2; z++){
+				for (int z = zCoord - 2; z < zCoord + 3; z++){
 					TileEntity tile = worldObj.getTileEntity(x, y, z);
 					if(tile != null && (tile instanceof BasicRailTileEntity)){
 						tile.updateEntity();
@@ -142,9 +142,9 @@ public class BasicRailLeftTileEntity extends TileEntity{
 	public int checkMultiBlockForm(){
 		int i=0;
 		
-		for (int x = xCoord - 1; x < xCoord + 2; x++){
+		for (int x = xCoord - 5; x < xCoord + 6; x++){
 			for (int y = yCoord; y < yCoord + 1; y++){
-				for (int z = zCoord - 1; z < zCoord + 2; z++){
+				for (int z = zCoord - 5; z < zCoord + 6; z++){
 					TileEntity tile = worldObj.getTileEntity(x, y, z);
 					if(tile != null && (tile instanceof BasicRailLeftTileEntity)){
 						if(this.isMaster()){
@@ -164,9 +164,9 @@ public class BasicRailLeftTileEntity extends TileEntity{
 	}
 	
 	public void setupStructure(){
-		for (int x = xCoord - 1; x < xCoord + 2; x++){
+		for (int x = xCoord - 5; x < xCoord + 6; x++){
 			for (int y = yCoord; y < yCoord + 1; y++){
-				for (int z = zCoord - 1; z < zCoord + 2; z++){
+				for (int z = zCoord - 5; z < zCoord + 6; z++){
 					TileEntity tile = worldObj.getTileEntity(x, y, z);
 					boolean master = (x == xCoord && y == yCoord && z == zCoord);
 					if(tile != null && (tile instanceof BasicRailTileEntity)){
@@ -193,9 +193,9 @@ public class BasicRailLeftTileEntity extends TileEntity{
 	}
 	
 	public void resetStructure(){
-		for (int x = xCoord - 1; x < xCoord + 2; x++){
+		for (int x = xCoord - 5; x < xCoord + 6; x++){
 			for (int y = yCoord; y < yCoord + 1; y++){
-				for (int z = zCoord - 1; z < zCoord + 2; z++){
+				for (int z = zCoord - 5; z < zCoord + 6; z++){
 					TileEntity tile = worldObj.getTileEntity(x, y, z);
 					if(tile != null && (tile instanceof BasicRailLeftTileEntity)){
 						((BasicRailLeftTileEntity) tile).reset();

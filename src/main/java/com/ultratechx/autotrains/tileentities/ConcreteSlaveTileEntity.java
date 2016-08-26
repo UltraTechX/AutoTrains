@@ -6,13 +6,13 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BasicRailTileEntity extends TileEntity{
+public class ConcreteSlaveTileEntity extends TileEntity{
 	private boolean hasMaster, check;
 	public boolean isMaster;
 	private int masterX, masterY, masterZ;
 	
 	@Override
-    public void updateEntity() {
+    public void updateEntity() { 
         super.updateEntity();
         if (!worldObj.isRemote) {
             if (hasMaster()) { 
@@ -146,13 +146,13 @@ public class BasicRailTileEntity extends TileEntity{
 			for (int y = yCoord; y < yCoord + 1; y++){
 				for (int z = zCoord - 5; z < zCoord + 6; z++){
 					TileEntity tile = worldObj.getTileEntity(x, y, z);
-					if(tile != null && (tile instanceof BasicRailTileEntity)){
+					if(tile != null && (tile instanceof ConcreteSlaveTileEntity)){
 						if(this.isMaster()){
-							if(((BasicRailTileEntity)tile).hasMaster()){
+							if(((ConcreteSlaveTileEntity) tile).hasMaster()){
 								i++;
 								//System.out.println(i);
 							}
-						}else if(!((BasicRailTileEntity)tile).hasMaster()){
+						}else if(!((ConcreteSlaveTileEntity)tile).hasMaster()){
 							//i++;
 							//System.out.println(i);
 						}
@@ -189,7 +189,7 @@ public class BasicRailTileEntity extends TileEntity{
 	
 	public boolean checkForMaster(){
 		TileEntity tile = worldObj.getTileEntity(masterX, masterY, masterZ);
-		return (tile != null && (tile instanceof BasicRailTileEntity));
+		return (tile != null && (tile instanceof ConcreteSlaveTileEntity));
 	}
 	
 	public void resetStructure(){
@@ -197,8 +197,8 @@ public class BasicRailTileEntity extends TileEntity{
 			for (int y = yCoord; y < yCoord + 1; y++){
 				for (int z = zCoord - 5; z < zCoord + 6; z++){
 					TileEntity tile = worldObj.getTileEntity(x, y, z);
-					if(tile != null && (tile instanceof BasicRailTileEntity)){
-						((BasicRailTileEntity) tile).reset();
+					if(tile != null && (tile instanceof ConcreteSlaveTileEntity)){
+						((ConcreteSlaveTileEntity) tile).reset();
 					}
 				}
 			}

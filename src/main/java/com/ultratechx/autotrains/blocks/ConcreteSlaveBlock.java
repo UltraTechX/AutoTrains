@@ -1,5 +1,12 @@
 package com.ultratechx.autotrains.blocks;
 
+import java.util.Random;
+
+import com.ultratechx.autotrains.AutoTrains;
+import com.ultratechx.autotrains.lib.Reference;
+import com.ultratechx.autotrains.tileentities.BasicRailTileEntity;
+import com.ultratechx.autotrains.tileentities.ConcreteSlaveTileEntity;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -10,38 +17,29 @@ import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-import java.util.Random;
+public class ConcreteSlaveBlock extends BlockContainer{
 
-import com.ultratechx.autotrains.AutoTrains;
-import com.ultratechx.autotrains.lib.Reference;
-import com.ultratechx.autotrains.tileentities.BasicRailTileEntity;
-
-public class BasicRailBlockSlave extends BlockContainer{
-	
 	private Item item;
 	
-	public BasicRailBlockSlave(String unlocalizedName, Material material) {
-        super(material);
-        this.setBlockName(unlocalizedName);
-        this.setHardness(2.0F);
-        this.setResistance(6.0F);
+	public ConcreteSlaveBlock(Material material, String name, CreativeTabs tab) {
+		super(material);
+		this.setCreativeTab(tab);
+		this.setBlockName(name);
+		this.setBlockTextureName(Reference.MODID + ":" + "concrete_slave_texture");
+        this.setHardness(1.0F);
+        this.setResistance(0.5F);
         this.setLightLevel(0.0F);
-        this.setHarvestLevel("pickaxe", 2);
-        this.setStepSound(soundTypeMetal);
-        this.setBlockBounds(0f, 0f, 0f, 1f, 0.0625f, 1f);
-        this.setBlockTextureName(Reference.MODID + ":" + "rail_normal_icon");
-    }
-	
-	@Override public int getRenderType() { return -1; }
+        this.setHarvestLevel("pickaxe", 0);
+	}
+
+	@Override
+	public TileEntity createNewTileEntity(World world, int meta){
+		return new ConcreteSlaveTileEntity();
+	}
 	
 	@Override public boolean isOpaqueCube() { return false; }
 	
-	public boolean renderAsNormalBlock() { return false; }
-	
-	@Override
-	public TileEntity createNewTileEntity(World world, int meta){
-		return new BasicRailTileEntity();
-	}
+	public boolean renderAsNormalBlock() { return true; }
 	
 	@Override
 	public void onNeighborBlockChange(World world, int x, int y, int z, Block block){
@@ -73,7 +71,6 @@ public class BasicRailBlockSlave extends BlockContainer{
 						this.item = this.getItem(world, y, z, x);
 						this.getItemDropped(1, new Random(), 1);
 						world.setBlock(xCoord, yCoord, zCoord, Blocks.air);
-						
 					}
 				}
 			}
@@ -88,6 +85,6 @@ public class BasicRailBlockSlave extends BlockContainer{
 	@Override
 	public Item getItemDropped(int p_149650_1_, Random rnd, int p_149650_3_)
     {
-		return Item.getItemFromBlock(AutoTrains.BasicRail);
+        return Item.getItemFromBlock(AutoTrains.BasicRail);
     }
 }

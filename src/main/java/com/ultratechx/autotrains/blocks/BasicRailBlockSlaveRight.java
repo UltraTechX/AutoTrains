@@ -5,8 +5,12 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 import com.ultratechx.autotrains.AutoTrains;
 import com.ultratechx.autotrains.lib.Reference;
@@ -14,6 +18,9 @@ import com.ultratechx.autotrains.tileentities.BasicRailRightTileEntity;
 import com.ultratechx.autotrains.tileentities.BasicRailRightTileEntity;
 
 public class BasicRailBlockSlaveRight extends BlockContainer{
+	
+	private Item item;
+	
 	public BasicRailBlockSlaveRight(String unlocalizedName, Material material) {
         super(material);
         this.setBlockName(unlocalizedName);
@@ -59,11 +66,13 @@ public class BasicRailBlockSlaveRight extends BlockContainer{
 	
 	@Override
 	public void breakBlock(World world, int x, int y, int z, Block block, int meta){
-		for (int xCoord = x- 1; xCoord < x + 2; xCoord++){
+		for (int xCoord = x- 5; xCoord < x + 6; xCoord++){
 			for (int yCoord = y; yCoord < y + 1; yCoord++){
-				for (int zCoord = z - 1; zCoord < z + 2; zCoord++){
+				for (int zCoord = z - 5; zCoord < z + 6; zCoord++){
 					Block tile = world.getBlock(xCoord, yCoord, zCoord);
 					if(tile == AutoTrains.BasicRail){
+						this.item = this.getItem(world, y, z, x);
+						this.getItemDropped(1, new Random(), 1);
 						world.setBlock(xCoord, yCoord, zCoord, Blocks.air);
 						
 					}
@@ -71,4 +80,11 @@ public class BasicRailBlockSlaveRight extends BlockContainer{
 			}
 		}
 	}
+	
+	
+	@Override
+	public Item getItemDropped(int p_149650_1_, Random rnd, int p_149650_3_)
+    {
+		return Item.getItemFromBlock(AutoTrains.BasicRail);
+    }
 }
