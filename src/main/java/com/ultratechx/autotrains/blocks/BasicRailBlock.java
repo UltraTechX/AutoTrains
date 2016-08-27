@@ -10,14 +10,17 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 public class BasicRailBlock extends BlockContainer{
     Block BasicRailBlockSlave = null;
     int brnd = 0;
+    private EntityPlayer player;
     private Item item;
     private boolean normalbreak = true;
 	public BasicRailBlock(String unlocalizedName, Material material) {
@@ -62,6 +65,7 @@ public class BasicRailBlock extends BlockContainer{
 	
 	@Override
 	public void onBlockAdded(World world, int x, int y, int z){
+		this.player = world.getClosestPlayer(x, y, z, 100);
 		brnd = 0;
 		normalbreak = true;
 		for (int xCoord = x- 5; xCoord < x + 6; xCoord++){
@@ -247,7 +251,7 @@ public class BasicRailBlock extends BlockContainer{
 			this.item = this.getItem(world, y, z, x);
 		}else{
 			normalbreak = false;
-			this.item = this.getItem(world, y, z, x);
+			this.player.inventory.addItemStackToInventory(new ItemStack(Item.getItemFromBlock(AutoTrains.BasicRail)));
 			world.setBlock(x, y, z, Blocks.air);
 		}
 	}
