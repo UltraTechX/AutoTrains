@@ -251,7 +251,8 @@ public class BasicRailBlock extends BlockContainer{
 			this.item = this.getItem(world, y, z, x);
 		}else{
 			normalbreak = false;
-			this.player.inventory.addItemStackToInventory(new ItemStack(Item.getItemFromBlock(AutoTrains.BasicRail)));
+			//this.player.inventory.addItemStackToInventory(new ItemStack(Item.getItemFromBlock(AutoTrains.BasicRail), 1));
+			this.player.dropItem(Item.getItemFromBlock(AutoTrains.BasicRail),1);
 			world.setBlock(x, y, z, Blocks.air);
 		}
 	}
